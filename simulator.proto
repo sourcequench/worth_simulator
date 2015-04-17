@@ -1,0 +1,47 @@
+package simulator;
+
+message Account {
+  required string name = 1;
+  required float value = 2;
+  //days required to turn holding to cash.
+  optional float liquidity = 3;
+  optional Sweep sweep_out = 4;
+  optional Sweep sweep_in = 5;
+  optional float rate = 6;
+  optional float stddev = 7;
+  //when to preciate
+  optional string timespec = 8;
+  optional string start_date = 9;
+  optional int32 loan_months = 10;
+
+  message Sweep {
+    required string sweep_account= 1;
+    required float amount = 2;
+  }
+}
+
+message Cashflow {
+  required string name = 1;
+  required string account = 2;
+  //Cron style timespec
+  required string timespec = 3;
+  required float amount = 4;
+  //starting and ending are iso date format:
+  //i.e. 2014-01-01
+  optional string start_date = 5;
+  optional string end_date = 6;
+  optional string category = 7;
+  optional float stddev = 8;
+  //these fields allow auto-calculating a fixed-rate loan schedule.
+
+}
+
+message GeneralLedger {
+  repeated Account account = 1;
+  repeated Cashflow cashflow = 2;
+  //globals live here
+  required float inflation = 3;
+  required float property_tax = 4;
+  required string start_date = 5;
+  required string end_date = 6;
+}

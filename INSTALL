@@ -1,0 +1,6 @@
+# Required libraries
+sudo apt-get install python-setuptools
+sudo easy_install croniter
+sudo apt-get install python-gflags
+sudo apt-get install python-dev
+sudo apt-get install python-matplotlib
